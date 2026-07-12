@@ -19,7 +19,7 @@ kotlin {
     }
     
     androidLibrary {
-       namespace = "com.danilobarreto.stockapp.designsystem.designsystem"
+       namespace = "com.danilobarreto.stockapp.designsystem"
        compileSdk = libs.versions.android.compileSdk.get().toInt()
        minSdk = libs.versions.android.minSdk.get().toInt()
     
