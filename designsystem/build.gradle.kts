@@ -15,6 +15,7 @@ kotlin {
         iosTarget.binaries.framework {
             baseName = "DesignSystem"
             isStatic = true
+            freeCompilerArgs += listOf("-Xbinary=bundleId=com.danilobarreto.stockapp.designsystem")
         }
     }
     
@@ -56,4 +57,13 @@ kotlin {
 
 dependencies {
     androidRuntimeClasspath(libs.compose.uiTooling)
+}
+
+// CMP 1.11.1 pre-built binaries use UIViewLayoutRegion (UIUtilities.framework), an iOS 26 API
+// not present in the Xcode 16.4 / iOS 18.5 SDK. Disable iOS Simulator test linking until
+// Xcode 17 (iOS 26 SDK) is installed or CMP is downgraded to a version built with iOS 18 SDK.
+tasks.matching {
+    it.name == "linkDebugTestIosSimulatorArm64" || it.name == "iosSimulatorArm64Test"
+}.configureEach {
+    enabled = false
 }
