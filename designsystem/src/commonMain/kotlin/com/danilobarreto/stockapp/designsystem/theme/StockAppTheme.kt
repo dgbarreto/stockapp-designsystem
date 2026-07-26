@@ -4,6 +4,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Typography
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import coil3.ImageLoader
+import coil3.compose.setSingletonImageLoaderFactory
+import coil3.network.ktor3.KtorNetworkFetcherFactory
 
 private val StockAppColorScheme = lightColorScheme(
     background = StockAppColors.surface1,
@@ -28,6 +31,12 @@ private val StockAppTypographyScheme = Typography(
 
 @Composable
 fun StockAppTheme(content: @Composable () -> Unit) {
+    setSingletonImageLoaderFactory { platformContext ->
+        ImageLoader.Builder(platformContext)
+            .components { add(KtorNetworkFetcherFactory()) }
+            .build()
+    }
+
     MaterialTheme(
         colorScheme = StockAppColorScheme,
         typography = StockAppTypographyScheme,
