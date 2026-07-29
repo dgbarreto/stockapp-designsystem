@@ -1,22 +1,28 @@
 # stockapp-designsystem
 
-Módulo KMP (Kotlin Multiplatform) + Compose Multiplatform com o tema, tokens e componentes de UI compartilhados do [StockApp](https://github.com/dgbarreto/stockapp-app) — app de acompanhamento de investimentos (projeto de estudo).
+Kotlin Multiplatform (KMP) + Compose Multiplatform module with the shared theme, design tokens and UI components for [StockApp](https://github.com/dgbarreto/stockapp-app) — an investment tracking app (learning project).
 
-Sem lógica de negócio: só design system (cores, tipografia, espaçamento, componentes base como botão/card/badge).
+No business logic here: just the design system (colors, typography, shapes, base components such as cards, buttons, text fields and avatars).
 
-## Estrutura
+## Structure
 
-- `designsystem/` — único módulo do repo, alvo Android (via `com.android.kotlin.multiplatform.library`) + iOS (framework estático `DesignSystem`), código comum em `designsystem/src/commonMain`.
+- `designsystem/` — the only module in this repo, targeting Android (via `com.android.kotlin.multiplatform.library`) + iOS (static framework `DesignSystem`), shared code in `designsystem/src/commonMain`.
+- `sample/` + `sample-android/` — dev-only sample apps (Android + Desktop) used to validate components in isolation.
+
+## What's in it
+
+- **Theme** (`theme/`): `StockAppColors`, `StockAppTypography`, `StockAppShapes` and `StockAppTheme` (a `MaterialTheme` derived from those tokens — every module renders through it, including plain Material3 components).
+- **Components** (`components/`): `StockAppCard`, `StockAppKeyValueRow`, `StockAppErrorBanner`, `StockAppTextField`, `StockAppPrimaryButton` and `StockAppAvatar` (image loading via Coil 3, with initials fallback).
 
 ## Status
 
-**Fase 1 — Fundação** (ver roadmap no documento de planejamento do projeto): scaffold criado via [KMP Wizard](https://kmp.jetbrains.com/) da JetBrains, ainda sem tema/tokens implementados.
+Fully implemented and published to GitHub Packages. Consumed by every other StockApp module (`stockapp-quotes`, `stockapp-auth`, `stockapp-portfolio`, `stockapp-orders`, `stockapp-app`).
 
 ## Stack
 
-- Kotlin 2.4.0 · Compose Multiplatform 1.11.1 · AGP 9.0.1
+- Kotlin 2.4.0 · Compose Multiplatform 1.11.1 · AGP 9.0.1 · Coil 3
 
-## Rodando
+## Running
 
 ```
 ./gradlew :designsystem:build
@@ -26,4 +32,4 @@ Sem lógica de negócio: só design system (cores, tipografia, espaçamento, com
 
 ---
 
-_Progresso mantido manualmente conforme o projeto avança._
+_Progress kept up to date manually as the project moves forward._
