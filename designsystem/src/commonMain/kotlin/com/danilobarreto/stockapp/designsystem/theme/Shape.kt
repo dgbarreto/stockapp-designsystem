@@ -5,4 +5,5 @@ import androidx.compose.ui.unit.dp
 
 object StockAppShapes {
     val cardRadius = RoundedCornerShape(8.dp)
+    val pillRadius = RoundedCornerShape(50)
 }
