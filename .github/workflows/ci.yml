@@ -33,6 +33,11 @@ jobs:
       - name: Android build and test
         run: ./gradlew :designsystem:testAndroidHostTest
 
+      - name: SonarQube Cloud Scan
+        run: ./gradlew sonar
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
   # Full build (all KMP targets, including iOS) — only when generating a release:
   # a version tag (publishes to GitHub Packages) or a push to a release/* branch.
   release:
