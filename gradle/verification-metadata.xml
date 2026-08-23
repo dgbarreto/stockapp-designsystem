@@ -13,7 +13,12 @@
          <trust group="com.google.guava" name="guava-parent" reason="AGP's transitive graph resolves this via an unpinned range; the exact version drifts across builds"/>
          <trust group="org.junit" name="junit-bom" reason="AGP's transitive graph resolves this via an unpinned range; the exact version drifts across builds"/>
          <trust group="org.jetbrains.kotlinx" name="kotlinx-coroutines-bom" reason="AGP's transitive graph resolves this via an unpinned range; the exact version drifts across builds"/>
+         <!-- Android Studio's KMP model builder resolves a sources jar (and, for
+              Gradle itself, a source zip) for every dependency on every target
+              platform to support "jump to source" in the IDE. Non-executable;
+              checksumming each one for every transitive dep is impractical. -->
          <trust file=".*-sources\.jar" regex="true" reason="IDE sync (Android Studio's KMP model builder) resolves a sources jar for every dependency on every target platform to support 'jump to source' — non-executable, checksumming each one for every transitive dep is impractical"/>
+         <trust group="gradle" name="gradle" reason="Android Studio's KMP model builder resolves Gradle's own source archive (gradle-&lt;version&gt;-src.zip) for 'jump to source' into Gradle internals — non-executable, and the exact Gradle version bundled with the IDE drifts independently of our wrapper version"/>
       </trusted-artifacts>
    </configuration>
    <components>
