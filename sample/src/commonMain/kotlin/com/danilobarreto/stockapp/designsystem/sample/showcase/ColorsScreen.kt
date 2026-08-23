@@ -24,32 +24,44 @@ import com.danilobarreto.stockapp.designsystem.theme.StockAppTypography
 
 private data class ColorSwatch(val propertyName: String, val hex: String, val color: Color)
 
-// Grouped exactly as in theme/Color.kt (StockAppColors): section comments become group titles.
+// Grouped exactly as in theme/Color.kt (StockAppColors, tema "Framboesa"): section comments
+// become group titles. surface0 was removed by the rebrand (#20); bg/divider/segTrack/
+// sheetHandle are new.
+private val brandSwatches = listOf(
+    ColorSwatch("primary", "#C6155C", StockAppColors.primary),
+    ColorSwatch("primaryDeep", "#6E0A32", StockAppColors.primaryDeep),
+    ColorSwatch("primaryTint", "#FDE8F0", StockAppColors.primaryTint),
+    ColorSwatch("onPrimary", "#FFFFFF", StockAppColors.onPrimary),
+)
+
 private val surfaceSwatches = listOf(
-    ColorSwatch("surface0", "#ECEAE3", StockAppColors.surface0),
-    ColorSwatch("surface1", "#F7F6F2", StockAppColors.surface1),
+    ColorSwatch("bg", "#F7F2F4", StockAppColors.bg),
+    ColorSwatch("surface1", "#F7F2F4", StockAppColors.surface1),
     ColorSwatch("surface2", "#FFFFFF", StockAppColors.surface2),
 )
 
 private val textSwatches = listOf(
-    ColorSwatch("textPrimary", "#1A1A1A", StockAppColors.textPrimary),
-    ColorSwatch("textSecondary", "#5F5E5A", StockAppColors.textSecondary),
-    ColorSwatch("textMuted", "#888780", StockAppColors.textMuted),
-    ColorSwatch("textSuccess", "#27500A", StockAppColors.textSuccess),
-    ColorSwatch("textDanger", "#791F1F", StockAppColors.textDanger),
-    ColorSwatch("textAccent", "#0C447C", StockAppColors.textAccent),
-    ColorSwatch("textWarning", "#633806", StockAppColors.textWarning),
+    ColorSwatch("textPrimary", "#1A1014", StockAppColors.textPrimary),
+    ColorSwatch("textSecondary", "#6B5860", StockAppColors.textSecondary),
+    ColorSwatch("textMuted", "#A79E96", StockAppColors.textMuted),
+    ColorSwatch("textSuccess", "#1F7A47", StockAppColors.textSuccess),
+    ColorSwatch("textDanger", "#B3251F", StockAppColors.textDanger),
+    ColorSwatch("textAccent", "#C6155C", StockAppColors.textAccent),
+    ColorSwatch("textWarning", "#9A6208", StockAppColors.textWarning),
 )
 
 private val semanticBackgroundSwatches = listOf(
-    ColorSwatch("bgSuccess", "#EAF3DE", StockAppColors.bgSuccess),
-    ColorSwatch("bgDanger", "#FCEBEB", StockAppColors.bgDanger),
-    ColorSwatch("bgAccent", "#E6F1FB", StockAppColors.bgAccent),
-    ColorSwatch("bgWarning", "#FAEEDA", StockAppColors.bgWarning),
+    ColorSwatch("bgSuccess", "#E6F3EA", StockAppColors.bgSuccess),
+    ColorSwatch("bgDanger", "#FBEAE8", StockAppColors.bgDanger),
+    ColorSwatch("bgAccent", "#FDE8F0", StockAppColors.bgAccent),
+    ColorSwatch("bgWarning", "#FBF0DC", StockAppColors.bgWarning),
 )
 
 private val borderSwatches = listOf(
-    ColorSwatch("border", "#E2DFD6", StockAppColors.border),
+    ColorSwatch("border", "#E7E1D9", StockAppColors.border),
+    ColorSwatch("divider", "#F3EEE7", StockAppColors.divider),
+    ColorSwatch("segTrack", "#EAE5DE", StockAppColors.segTrack),
+    ColorSwatch("sheetHandle", "#DCD5CC", StockAppColors.sheetHandle),
 )
 
 @Composable
@@ -61,10 +73,11 @@ fun ColorsScreen(modifier: Modifier = Modifier) {
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(28.dp),
     ) {
+        ShowcaseGroup("Marca (tema Framboesa)") { SwatchGrid(brandSwatches) }
         ShowcaseGroup("Superfícies") { SwatchGrid(surfaceSwatches) }
         ShowcaseGroup("Texto") { SwatchGrid(textSwatches) }
         ShowcaseGroup("Fundos semânticos (badges, alertas)") { SwatchGrid(semanticBackgroundSwatches) }
-        ShowcaseGroup("Borda") { SwatchGrid(borderSwatches) }
+        ShowcaseGroup("Bordas e traços") { SwatchGrid(borderSwatches) }
     }
 }
 

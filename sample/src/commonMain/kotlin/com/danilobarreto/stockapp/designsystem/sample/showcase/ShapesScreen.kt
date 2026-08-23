@@ -27,19 +27,55 @@ private data class ShapeSample(
     val shape: CornerBasedShape,
 )
 
-// StockAppShapes only declares these two — every value in theme/Shape.kt is represented below.
+// Every value declared in theme/Shape.kt (StockAppShapes), in source order.
 private val shapeSamples = listOf(
     ShapeSample(
         propertyName = "cardRadius",
-        declaration = "RoundedCornerShape(8.dp)",
-        description = "8dp de raio — cards, campos de texto, botões",
+        declaration = "RoundedCornerShape(20.dp)",
+        description = "cartão de lista (padrão)",
         shape = StockAppShapes.cardRadius,
+    ),
+    ShapeSample(
+        propertyName = "cardRadiusLarge",
+        declaration = "RoundedCornerShape(24.dp)",
+        description = "cartão grande/destaque (ex.: gráfico, distribuição)",
+        shape = StockAppShapes.cardRadiusLarge,
+    ),
+    ShapeSample(
+        propertyName = "fieldRadius",
+        declaration = "RoundedCornerShape(14.dp)",
+        description = "campo de texto",
+        shape = StockAppShapes.fieldRadius,
+    ),
+    ShapeSample(
+        propertyName = "avatarRadius",
+        declaration = "RoundedCornerShape(13.dp)",
+        description = "avatar de ticker",
+        shape = StockAppShapes.avatarRadius,
     ),
     ShapeSample(
         propertyName = "pillRadius",
         declaration = "RoundedCornerShape(50)",
-        description = "50% de raio — formato pílula, usado em badges",
+        description = "pill/botão",
         shape = StockAppShapes.pillRadius,
+    ),
+    ShapeSample(
+        propertyName = "sheetTopRadius",
+        declaration = "RoundedCornerShape(topStart = 30.dp, topEnd = 30.dp)",
+        description = "topo do bottom sheet",
+        shape = StockAppShapes.sheetTopRadius,
+    ),
+    ShapeSample(
+        propertyName = "headerBottomRadius",
+        declaration = "RoundedCornerShape(bottomStart = 30.dp, bottomEnd = 30.dp)",
+        description = "header colorido das telas principais",
+        shape = StockAppShapes.headerBottomRadius,
+    ),
+    ShapeSample(
+        propertyName = "controlRadius",
+        declaration = "RoundedCornerShape(10.dp)",
+        description = "botões de controle pequenos (stepper, segmented control)",
+        shape = StockAppShapes.controlRadius,
     ),
 )
 

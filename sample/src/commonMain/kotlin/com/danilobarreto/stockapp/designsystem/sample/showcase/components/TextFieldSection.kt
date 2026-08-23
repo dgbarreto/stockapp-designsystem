@@ -2,30 +2,24 @@ package com.danilobarreto.stockapp.designsystem.sample.showcase.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Switch
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.danilobarreto.stockapp.designsystem.components.StockAppTextField
 import com.danilobarreto.stockapp.designsystem.sample.showcase.ShowcaseEntry
-import com.danilobarreto.stockapp.designsystem.theme.StockAppColors
-import com.danilobarreto.stockapp.designsystem.theme.StockAppTypography
 
 @Composable
 fun TextFieldSection(modifier: Modifier = Modifier) {
-    var value by remember { mutableStateOf("") }
-    var isPasswordOn by remember { mutableStateOf(false) }
+    var name by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
 
     Column(
         modifier = modifier
@@ -35,36 +29,45 @@ fun TextFieldSection(modifier: Modifier = Modifier) {
         verticalArrangement = Arrangement.spacedBy(24.dp),
     ) {
         ShowcaseEntry(
-            name = "Interativo (aceita digitação e alterna isPassword)",
-            description = "O switch \"isPassword\" abaixo do campo não faz parte do componente — é um " +
-                "controle do showcase para demonstrar o parâmetro isPassword ao vivo.",
+            name = "Interativo (aceita digitação)",
             code = """
                 StockAppTextField(
-                    label = "Senha",
-                    value = value,
-                    onValueChange = { value = it },
-                    placeholder = "Digite sua senha",
-                    isPassword = $isPasswordOn,
+                    label = "Nome",
+                    value = name,
+                    onValueChange = { name = it },
+                    placeholder = "Como você se chama?",
                 )
             """.trimIndent(),
         ) {
-            Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            StockAppTextField(
+                label = "Nome",
+                value = name,
+                onValueChange = { name = it },
+                placeholder = "Como você se chama?",
+            )
+        }
+
+        ShowcaseEntry(
+            name = "Senha (interativo — toque no ícone de olho para revelar)",
+            description = "isPassword = true agora renderiza o próprio ícone de olho do componente " +
+                "(StockAppIcons.Eye / EyeOff) como trailing icon.",
+            code = """
                 StockAppTextField(
                     label = "Senha",
-                    value = value,
-                    onValueChange = { value = it },
+                    value = password,
+                    onValueChange = { password = it },
                     placeholder = "Digite sua senha",
-                    isPassword = isPasswordOn,
+                    isPassword = true,
                 )
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Text("isPassword", style = StockAppTypography.labelMedium, color = StockAppColors.textSecondary)
-                    Switch(
-                        checked = isPasswordOn,
-                        onCheckedChange = { isPasswordOn = it },
-                        modifier = Modifier.padding(start = 8.dp),
-                    )
-                }
-            }
+            """.trimIndent(),
+        ) {
+            StockAppTextField(
+                label = "Senha",
+                value = password,
+                onValueChange = { password = it },
+                placeholder = "Digite sua senha",
+                isPassword = true,
+            )
         }
 
         ShowcaseEntry(

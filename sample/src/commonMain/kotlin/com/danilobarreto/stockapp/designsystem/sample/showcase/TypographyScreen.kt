@@ -17,23 +17,36 @@ import com.danilobarreto.stockapp.designsystem.theme.StockAppTypography
 
 private data class TypographySample(val propertyName: String, val usage: String, val style: TextStyle)
 
-// Every value declared in theme/Typography.kt (StockAppTypography), in source order.
-private val typographySamples = listOf(
-    TypographySample("titleLarge", "ex.: valor do patrimônio", StockAppTypography.titleLarge),
-    TypographySample("titleMedium", "títulos de seção", StockAppTypography.titleMedium),
-    TypographySample("bodyMedium", "nome/valor do ativo", StockAppTypography.bodyMedium),
-    TypographySample("labelMedium", "labels, badges", StockAppTypography.labelMedium),
-    TypographySample("labelSmall", "metadados (qtd., PM)", StockAppTypography.labelSmall),
-)
-
 private fun FontWeight.label(): String = when (this) {
+    FontWeight.Light -> "Light"
     FontWeight.Normal -> "Normal"
     FontWeight.Medium -> "Medium"
+    FontWeight.SemiBold -> "SemiBold"
+    FontWeight.Bold -> "Bold"
+    FontWeight.ExtraBold -> "ExtraBold"
     else -> toString()
 }
 
 @Composable
 fun TypographyScreen(modifier: Modifier = Modifier) {
+    // StockAppTypography's properties are `@Composable get()` (they resolve Outfit/Bricolage font
+    // resources), so the sample list has to be built here, inside a composable, rather than as a
+    // top-level val.
+    val typographySamples = listOf(
+        TypographySample("titleLarge", "títulos de tela", StockAppTypography.titleLarge),
+        TypographySample("titleMedium", "títulos de seção / nome do ativo", StockAppTypography.titleMedium),
+        TypographySample("bodyMedium", "item de lista, corpo", StockAppTypography.bodyMedium),
+        TypographySample("labelMedium", "labels, badges, chips", StockAppTypography.labelMedium),
+        TypographySample("labelSmall", "metadados (qtd., PM)", StockAppTypography.labelSmall),
+        TypographySample("displayXLarge", "patrimônio total (home)", StockAppTypography.displayXLarge),
+        TypographySample("displayLarge", "preço do ativo", StockAppTypography.displayLarge),
+        TypographySample("displayMedium", "total da carteira", StockAppTypography.displayMedium),
+        TypographySample("headerTitle", "título dentro do header colorido", StockAppTypography.headerTitle),
+        TypographySample("buttonLabel", "texto de botão primário", StockAppTypography.buttonLabel),
+        TypographySample("bodySmall", "texto secundário", StockAppTypography.bodySmall),
+        TypographySample("labelTable", "label de tabela dentro de card", StockAppTypography.labelTable),
+    )
+
     Column(
         modifier = modifier
             .fillMaxSize()

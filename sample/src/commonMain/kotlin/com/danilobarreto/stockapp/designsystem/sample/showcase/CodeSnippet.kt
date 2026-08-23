@@ -27,7 +27,7 @@ fun CodeSnippetCard(code: String, modifier: Modifier = Modifier) {
         color = StockAppColors.textSecondary,
         modifier = modifier
             .fillMaxWidth()
-            .background(StockAppColors.surface0, shape = StockAppShapes.cardRadius)
+            .background(StockAppColors.segTrack, shape = StockAppShapes.cardRadius)
             .border(1.dp, StockAppColors.border, shape = StockAppShapes.cardRadius)
             .padding(12.dp)
     )
