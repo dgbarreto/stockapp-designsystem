@@ -4,17 +4,24 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
+import com.danilobarreto.stockapp.designsystem.icons.StockAppIcons
 import com.danilobarreto.stockapp.designsystem.theme.StockAppColors
+import com.danilobarreto.stockapp.designsystem.theme.StockAppShapes
 import com.danilobarreto.stockapp.designsystem.theme.StockAppTypography
 
 @Composable
@@ -29,6 +36,8 @@ fun StockAppTextField(
     isError: Boolean = false,
     supportingText: String? = null
 ){
+    var passwordVisible by remember { mutableStateOf(false) }
+
     Column(modifier = modifier.fillMaxWidth()){
         Text(
             text = label,
@@ -43,13 +52,30 @@ fun StockAppTextField(
             placeholder = placeholder?.let { { Text(it) } },
             singleLine = true,
             supportingText = supportingText?.let { { Text(it) } },
-            visualTransformation = if(isPassword) PasswordVisualTransformation() else VisualTransformation.None,
+            textStyle = StockAppTypography.bodyMedium,
+            visualTransformation = when {
+                isPassword && !passwordVisible -> PasswordVisualTransformation()
+                else -> VisualTransformation.None
+            },
+            trailingIcon = if (isPassword) {
+                {
+                    IconButton(onClick = { passwordVisible = !passwordVisible }) {
+                        Icon(
+                            imageVector = if (passwordVisible) StockAppIcons.EyeOff else StockAppIcons.Eye,
+                            contentDescription = if (passwordVisible) "Ocultar senha" else "Mostrar senha",
+                            tint = StockAppColors.textMuted,
+                        )
+                    }
+                }
+            } else null,
             keyboardOptions = KeyboardOptions(keyboardType = keyboardType),
-            shape = MaterialTheme.shapes.medium,
+            isError = isError,
+            shape = StockAppShapes.fieldRadius,
             colors = OutlinedTextFieldDefaults.colors(
+                focusedBorderColor = StockAppColors.textAccent,
                 unfocusedBorderColor = StockAppColors.border,
                 unfocusedContainerColor = StockAppColors.surface2,
-                focusedContainerColor = StockAppColors.surface2
+                focusedContainerColor = StockAppColors.surface2,
             )
         )
     }

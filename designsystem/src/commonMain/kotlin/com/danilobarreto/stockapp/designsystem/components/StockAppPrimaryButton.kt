@@ -1,15 +1,17 @@
 package com.danilobarreto.stockapp.designsystem.components
 
-import androidx.annotation.MainThread
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.danilobarreto.stockapp.designsystem.theme.StockAppColors
+import com.danilobarreto.stockapp.designsystem.theme.StockAppShapes
+import com.danilobarreto.stockapp.designsystem.theme.StockAppTypography
 
 @Composable
 fun StockAppPrimaryButton(
@@ -22,7 +24,11 @@ fun StockAppPrimaryButton(
     Button(
         onClick = onClick,
         enabled = enabled && !loading,
-        shape = MaterialTheme.shapes.medium,
+        shape = StockAppShapes.pillRadius,
+        colors = ButtonDefaults.buttonColors(
+            containerColor = StockAppColors.textAccent,
+            contentColor = StockAppColors.surface2,
+        ),
         modifier = modifier
             .fillMaxWidth()
             .height(44.dp)
@@ -30,11 +36,11 @@ fun StockAppPrimaryButton(
         if(loading){
             CircularProgressIndicator(
                 modifier = Modifier.height(20.dp),
-                color = MaterialTheme.colorScheme.onPrimary,
+                color = StockAppColors.surface2,
                 strokeWidth = 2.dp
             )
         } else {
-            Text(text)
+            Text(text, style = StockAppTypography.buttonLabel)
         }
     }
 }

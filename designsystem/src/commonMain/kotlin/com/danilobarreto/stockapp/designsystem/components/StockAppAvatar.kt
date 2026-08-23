@@ -3,7 +3,6 @@ package com.danilobarreto.stockapp.designsystem.components
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -13,11 +12,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImagePainter
 import coil3.compose.SubcomposeAsyncImage
 import coil3.compose.SubcomposeAsyncImageContent
+import com.danilobarreto.stockapp.designsystem.theme.StockAppShapes
 import com.danilobarreto.stockapp.designsystem.theme.StockAppTypography
 
 @Composable
@@ -32,7 +33,7 @@ fun StockAppAvatar(
     Box(
         modifier = modifier
             .size(size)
-            .clip(CircleShape)
+            .clip(StockAppShapes.avatarRadius)
             .background(fallbackBackgroundColor),
         contentAlignment = Alignment.Center,
     ) {
@@ -58,5 +59,10 @@ fun StockAppAvatar(
 
 @Composable
 private fun AvatarFallbackText(text: String, textColor: Color) {
-    Text(text = text, style = StockAppTypography.labelSmall, color = textColor, maxLines = 1)
+    Text(
+        text = text,
+        style = StockAppTypography.labelSmall.copy(fontWeight = FontWeight.Bold),
+        color = textColor,
+        maxLines = 1,
+    )
 }
