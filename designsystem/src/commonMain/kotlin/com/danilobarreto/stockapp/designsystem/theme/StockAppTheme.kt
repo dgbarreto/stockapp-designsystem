@@ -21,14 +21,6 @@ private val StockAppColorScheme = lightColorScheme(
     outline = StockAppColors.border,
 )
 
-private val StockAppTypographyScheme = Typography(
-    titleLarge = StockAppTypography.titleLarge,
-    titleMedium = StockAppTypography.titleMedium,
-    bodyMedium = StockAppTypography.bodyMedium,
-    labelMedium = StockAppTypography.labelMedium,
-    labelSmall = StockAppTypography.labelSmall,
-)
-
 @Composable
 fun StockAppTheme(content: @Composable () -> Unit) {
     setSingletonImageLoaderFactory { platformContext ->
@@ -37,9 +29,19 @@ fun StockAppTheme(content: @Composable () -> Unit) {
             .build()
     }
 
+    // Precisa ser montado aqui dentro (contexto @Composable), não como val de arquivo,
+    // porque StockAppTypography.titleLarge/etc. agora resolvem fonte via recurso Compose.
+    val stockAppTypographyScheme = Typography(
+        titleLarge = StockAppTypography.titleLarge,
+        titleMedium = StockAppTypography.titleMedium,
+        bodyMedium = StockAppTypography.bodyMedium,
+        labelMedium = StockAppTypography.labelMedium,
+        labelSmall = StockAppTypography.labelSmall,
+    )
+
     MaterialTheme(
         colorScheme = StockAppColorScheme,
-        typography = StockAppTypographyScheme,
+        typography = stockAppTypographyScheme,
         shapes = MaterialTheme.shapes.copy(medium = StockAppShapes.cardRadius),
         content = content,
     )
