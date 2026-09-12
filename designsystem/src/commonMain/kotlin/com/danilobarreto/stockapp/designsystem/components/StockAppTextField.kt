@@ -15,6 +15,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
@@ -34,7 +35,8 @@ fun StockAppTextField(
     isPassword: Boolean = false,
     keyboardType: KeyboardType = KeyboardType.Text,
     isError: Boolean = false,
-    supportingText: String? = null
+    supportingText: String? = null,
+    leadingIcon: ImageVector? = null,
 ){
     var passwordVisible by remember { mutableStateOf(false) }
 
@@ -56,6 +58,9 @@ fun StockAppTextField(
             visualTransformation = when {
                 isPassword && !passwordVisible -> PasswordVisualTransformation()
                 else -> VisualTransformation.None
+            },
+            leadingIcon = leadingIcon?.let {
+                { Icon(imageVector = it, contentDescription = null, tint = StockAppColors.primary) }
             },
             trailingIcon = if (isPassword) {
                 {
