@@ -27,6 +27,7 @@ fun StockAppStepper(
     modifier: Modifier = Modifier,
     min: Int = 1,
     max: Int = Int.MAX_VALUE,
+    step: Int = 1,
 ) {
     Row(
         modifier = modifier,
@@ -36,7 +37,7 @@ fun StockAppStepper(
             icon = StockAppIcons.Minus,
             contentDescription = "Diminuir",
             enabled = value > min,
-            onClick = { if (value > min) onValueChange(value - 1) },
+            onClick = { onValueChange((value - step).coerceAtLeast(min)) },
         )
         Text(
             text = value.toString(),
@@ -49,7 +50,7 @@ fun StockAppStepper(
             icon = StockAppIcons.Plus,
             contentDescription = "Aumentar",
             enabled = value < max,
-            onClick = { if (value < max) onValueChange(value + 1) },
+            onClick = { onValueChange((value + step).coerceAtMost(max)) },
         )
     }
 }
