@@ -11,7 +11,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -29,11 +31,13 @@ fun StockAppAvatar(
     fallbackTextColor: Color,
     modifier: Modifier = Modifier,
     size: Dp = 32.dp,
+    shape: Shape = StockAppShapes.avatarRadius,
+    textStyle: TextStyle = StockAppTypography.labelSmall.copy(fontWeight = FontWeight.Bold),
 ) {
     Box(
         modifier = modifier
             .size(size)
-            .clip(StockAppShapes.avatarRadius)
+            .clip(shape)
             .background(fallbackBackgroundColor),
         contentAlignment = Alignment.Center,
     ) {
@@ -46,22 +50,22 @@ fun StockAppAvatar(
             ) {
                 val state by painter.state.collectAsState()
                 if (state is AsyncImagePainter.State.Error) {
-                    AvatarFallbackText(fallbackText, fallbackTextColor)
+                    AvatarFallbackText(fallbackText, fallbackTextColor, textStyle)
                 } else {
                     SubcomposeAsyncImageContent()
                 }
             }
         } else {
-            AvatarFallbackText(fallbackText, fallbackTextColor)
+            AvatarFallbackText(fallbackText, fallbackTextColor, textStyle)
         }
     }
 }
 
 @Composable
-private fun AvatarFallbackText(text: String, textColor: Color) {
+private fun AvatarFallbackText(text: String, textColor: Color, textStyle: TextStyle) {
     Text(
         text = text,
-        style = StockAppTypography.labelSmall.copy(fontWeight = FontWeight.Bold),
+        style = textStyle,
         color = textColor,
         maxLines = 1,
     )
