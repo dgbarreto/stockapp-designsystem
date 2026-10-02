@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Icon
@@ -30,7 +31,7 @@ fun StockAppStepper(
     step: Int = 1,
 ) {
     Row(
-        modifier = modifier,
+        modifier = modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         StepperButton(
@@ -41,10 +42,10 @@ fun StockAppStepper(
         )
         Text(
             text = value.toString(),
-            style = StockAppTypography.titleMedium.copy(fontSize = 19.sp),
+            style = StockAppTypography.headerTitle.copy(fontSize = 22.sp),
             color = StockAppColors.textPrimary,
             textAlign = TextAlign.Center,
-            modifier = Modifier.width(48.dp),
+            modifier = Modifier.weight(1f),
         )
         StepperButton(
             icon = StockAppIcons.Plus,
@@ -64,7 +65,7 @@ private fun StepperButton(
 ) {
     Box(
         modifier = Modifier
-            .size(30.dp)
+            .size(34.dp)
             .background(StockAppColors.primaryTint, shape = StockAppShapes.controlRadius)
             .clickable(enabled = enabled, onClick = onClick),
         contentAlignment = Alignment.Center,
@@ -73,7 +74,7 @@ private fun StepperButton(
             imageVector = icon,
             contentDescription = contentDescription,
             tint = StockAppColors.primaryDeep,
-            modifier = Modifier.size(16.dp),
+            modifier = Modifier.size(18.dp),
         )
     }
 }
