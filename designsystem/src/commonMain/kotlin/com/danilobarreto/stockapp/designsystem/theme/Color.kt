@@ -33,4 +33,7 @@ object StockAppColors {
     val divider = Color(0xFFF3EEE7)       // divisória entre linhas de lista dentro de card
     val segTrack = Color(0xFFEAE5DE)      // trilha do controle segmentado
     val sheetHandle = Color(0xFFDCD5CC)   // alça (grabber) do topo do bottom sheet
+
+    val accent = Color(0xFFF2949C)       // 3ª fatia do gráfico de distribuição
+    val chartOther = Color(0xFFCFC7BE)   // fatia "Outros"
 }
