@@ -19,6 +19,8 @@ import com.danilobarreto.stockapp.designsystem.sample.showcase.ShowcaseEntry
 @Composable
 fun StepperSection(modifier: Modifier = Modifier) {
     var quantity by remember { mutableStateOf(1) }
+    var lot by remember { mutableStateOf(100) }
+    var units by remember { mutableStateOf(1) }
 
     Column(
         modifier = modifier
@@ -28,8 +30,8 @@ fun StepperSection(modifier: Modifier = Modifier) {
         verticalArrangement = Arrangement.spacedBy(24.dp),
     ) {
         ShowcaseEntry(
-            name = "Quantidade (interativo, min = 1, max = 10)",
-            description = "value = $quantity",
+            name = "Quantidade com limite (min = 1, max = 10)",
+            description = "value = $quantity — digite 50 e saia do campo: volta pro máximo (10). Apague tudo e saia: volta pro mínimo (1).",
             code = """
                 StockAppStepper(
                     value = $quantity,
@@ -44,6 +46,46 @@ fun StepperSection(modifier: Modifier = Modifier) {
                 onValueChange = { quantity = it },
                 min = 1,
                 max = 10,
+            )
+        }
+
+        ShowcaseEntry(
+            name = "Ação — lote padrão (step = 100)",
+            description = "value = $lot — botões andam de 100 em 100; tocar no número seleciona tudo pra digitar um valor fracionário (ex.: 150).",
+            code = """
+                StockAppStepper(
+                    value = $lot,
+                    onValueChange = { lot = it },
+                    min = 1,
+                    step = 100,
+                )
+            """.trimIndent(),
+        ) {
+            StockAppStepper(
+                value = lot,
+                onValueChange = { lot = it },
+                min = 1,
+                step = 100,
+            )
+        }
+
+        ShowcaseEntry(
+            name = "FII — unitário (step = 1)",
+            description = "value = $units — sem lote: botões de 1 em 1, número também editável.",
+            code = """
+                StockAppStepper(
+                    value = $units,
+                    onValueChange = { units = it },
+                    min = 1,
+                    step = 1,
+                )
+            """.trimIndent(),
+        ) {
+            StockAppStepper(
+                value = units,
+                onValueChange = { units = it },
+                min = 1,
+                step = 1,
             )
         }
     }
