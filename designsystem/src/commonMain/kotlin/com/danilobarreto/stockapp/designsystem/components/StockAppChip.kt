@@ -9,6 +9,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.danilobarreto.stockapp.designsystem.theme.StockAppColors
 import com.danilobarreto.stockapp.designsystem.theme.StockAppShapes
@@ -26,7 +27,7 @@ fun StockAppChip(
 
     Text(
         text = text,
-        style = StockAppTypography.labelMedium,
+        style = StockAppTypography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
         color = contentColor,
         modifier = modifier
             .background(background, shape = StockAppShapes.pillRadius)
@@ -39,6 +40,6 @@ fun StockAppChip(
                 interactionSource = remember { MutableInteractionSource() },
                 indication = null,
             ) { onClick() }
-            .padding(horizontal = 14.dp, vertical = 8.dp),
+            .padding(horizontal = 18.dp, vertical = 10.dp),
     )
 }

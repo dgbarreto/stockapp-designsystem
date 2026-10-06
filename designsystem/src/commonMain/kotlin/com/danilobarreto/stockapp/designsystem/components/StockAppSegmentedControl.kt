@@ -15,6 +15,7 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.danilobarreto.stockapp.designsystem.theme.StockAppColors
 import com.danilobarreto.stockapp.designsystem.theme.StockAppShapes
 import com.danilobarreto.stockapp.designsystem.theme.StockAppTypography
@@ -29,14 +30,15 @@ fun StockAppSegmentedControl(
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .background(StockAppColors.segTrack, shape = StockAppShapes.controlRadius)
-            .padding(3.dp),
+            .background(StockAppColors.segTrack, shape = StockAppShapes.pillRadius)
+            .padding(4.dp),
     ) {
         options.forEachIndexed { index, option ->
             val isSelected = index == selectedIndex
             Text(
                 text = option,
-                style = StockAppTypography.labelMedium.copy(
+                style = StockAppTypography.bodyMedium.copy(
+                    fontSize = 15.sp,
                     fontWeight = if (isSelected) FontWeight.SemiBold else FontWeight.Medium,
                 ),
                 color = if (isSelected) StockAppColors.textPrimary else StockAppColors.textSecondary,
@@ -46,15 +48,15 @@ fun StockAppSegmentedControl(
                     .let { base ->
                         if (isSelected) {
                             base
-                                .shadow(elevation = 1.dp, shape = RoundedCornerShape(8.dp))
-                                .background(StockAppColors.surface2, shape = RoundedCornerShape(8.dp))
+                                .shadow(elevation = 1.dp, shape = StockAppShapes.pillRadius)
+                                .background(StockAppColors.surface2, shape = StockAppShapes.pillRadius)
                         } else base
                     }
                     .clickable(
                         interactionSource = remember { MutableInteractionSource() },
                         indication = null,
                     ) { onOptionSelected(index) }
-                    .padding(vertical = 8.dp),
+                    .padding(vertical = 12.dp),
             )
         }
     }

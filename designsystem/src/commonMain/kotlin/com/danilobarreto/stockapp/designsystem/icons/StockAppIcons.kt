@@ -6,6 +6,7 @@ import com.danilobarreto.stockapp.designsystem.generated.resources.Res
 import com.danilobarreto.stockapp.designsystem.generated.resources.ic_arrow_left
 import com.danilobarreto.stockapp.designsystem.generated.resources.ic_arrow_up_right
 import com.danilobarreto.stockapp.designsystem.generated.resources.ic_bell
+import com.danilobarreto.stockapp.designsystem.generated.resources.ic_calendar
 import com.danilobarreto.stockapp.designsystem.generated.resources.ic_chart_candle
 import com.danilobarreto.stockapp.designsystem.generated.resources.ic_check
 import com.danilobarreto.stockapp.designsystem.generated.resources.ic_chevron_right
@@ -42,4 +43,5 @@ object StockAppIcons {
     val Check: ImageVector @Composable get() = vectorResource(Res.drawable.ic_check)
     val LogOut: ImageVector @Composable get() = vectorResource(Res.drawable.ic_log_out)
     val ChevronRight: ImageVector @Composable get() = vectorResource(Res.drawable.ic_chevron_right)
+    val Calendar: ImageVector @Composable get() = vectorResource(Res.drawable.ic_calendar)
 }
